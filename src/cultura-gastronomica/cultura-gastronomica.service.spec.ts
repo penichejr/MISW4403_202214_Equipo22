@@ -40,13 +40,13 @@ describe('CulturaGastronomicaService', () => {
     expect(service).toBeDefined();
   });
 
-  it('findAll debería retornar todas las culturas gastronómicas', async () => {
+  it('findAll debería retornar todas las culturas gastronomicas', async () => {
     const culturasGastronomicas: CulturaGastronomicaEntity[] = await service.findAll();
     expect(culturasGastronomicas).not.toBeNull();
     expect(culturasGastronomicas).toHaveLength(culturasGastronomicasList.length);
   });
 
-  it('findOne debería retornar una cultura gastronómica por su id', async () => {
+  it('findOne debería retornar una cultura gastronomica por su id', async () => {
     const storedCG: CulturaGastronomicaEntity = culturasGastronomicasList[0];
     const culturaGastronomica: CulturaGastronomicaEntity = await service.findOne(storedCG.id);
     expect(culturaGastronomica).not.toBeNull();
@@ -56,11 +56,11 @@ describe('CulturaGastronomicaService', () => {
   it('findOne debería arrojar una excepción al buscar una cultura gastronomica inválido', async () => {
     await expect(() => service.findOne('0')).rejects.toHaveProperty(
       'message',
-      'La cultura gastronómica con el id indicado no fue encontrado',
+      'La cultura gastronomica con el id indicado no fue encontrado',
     );
   });
 
-  it('Create debería retornar una nueva cultura gastronómica', async () => {
+  it('Create debería retornar una nueva cultura gastronomica', async () => {
     const culturaGastronomica: CulturaGastronomicaEntity = {
       id: '',
       nombre: 'Nuevo País',

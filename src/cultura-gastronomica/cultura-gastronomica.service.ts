@@ -12,13 +12,17 @@ export class CulturaGastronomicaService {
     ){}
 
     async findAll(): Promise<CulturaGastronomicaEntity[]> {
-        return await this.culturaGastronomicaRepository.find({ relations: ["paises", "recetas", "productosCaracteristicos", "restaurantesEspecializados"] });
+        return await this.culturaGastronomicaRepository.find({ 
+            //relations: ["paises", "recetas", "productosCaracteristicos", "restaurantesEspecializados"] 
+        });
     }
 
     async findOne(id: string): Promise<CulturaGastronomicaEntity> {
-        const culturaGastronomica: CulturaGastronomicaEntity = await this.culturaGastronomicaRepository.findOne({where: {id}, relations: ["paises", "recetas", "productosCaracteristicos", "restaurantesEspecializados"] } );
+        const culturaGastronomica: CulturaGastronomicaEntity = await this.culturaGastronomicaRepository.findOne({
+            where: {id}, // relations: ["paises", "recetas", "productosCaracteristicos", "restaurantesEspecializados"] 
+        } );
         if (!culturaGastronomica)
-          throw new BusinessLogicException("The culturaGastronomica with the given id was not found", BusinessError.NOT_FOUND);
+          throw new BusinessLogicException("La cultura gastronomica con el id indicado no fue encontrado", BusinessError.NOT_FOUND);
     
         return culturaGastronomica;
     }
@@ -30,7 +34,7 @@ export class CulturaGastronomicaService {
     async update(id: string, culturaGastronomica: CulturaGastronomicaEntity): Promise<CulturaGastronomicaEntity> {
         const persistedCulturaGastronomica: CulturaGastronomicaEntity = await this.culturaGastronomicaRepository.findOne({where:{id}});
         if (!persistedCulturaGastronomica)
-          throw new BusinessLogicException("The culturaGastronomica with the given id was not found", BusinessError.NOT_FOUND);
+          throw new BusinessLogicException("La cultura gastronomica con el id indicado no fue encontrado", BusinessError.NOT_FOUND);
         
         return await this.culturaGastronomicaRepository.save({...persistedCulturaGastronomica, ...culturaGastronomica});
     }
@@ -38,7 +42,7 @@ export class CulturaGastronomicaService {
     async delete(id: string) {
         const culturaGastronomica: CulturaGastronomicaEntity = await this.culturaGastronomicaRepository.findOne({where:{id}});
         if (!culturaGastronomica)
-          throw new BusinessLogicException("The culturaGastronomica with the given id was not found", BusinessError.NOT_FOUND);
+          throw new BusinessLogicException("La cultura gastronomica con el id indicado no fue encontrado", BusinessError.NOT_FOUND);
       
         await this.culturaGastronomicaRepository.remove(culturaGastronomica);
     }

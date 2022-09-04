@@ -18,7 +18,7 @@ export class CulturaGastronomicaEntity {
 
 //   @ManyToMany(() => RestauranteEspecializadoEntity, restauranteEspecializadoEntity => restauranteEspecializado.culturasGastronomicas)
 //   @JoinColumn()
-//   paises: PaisEntity[];
+//   restaurantesEspecializadosEntity: RestauranteEspecializadoEntity[];
 
 //   @ManyToOne(() => RecetaEntity, recetaEntity => receta.culturasGastronomicas)
 //   @JoinColumn()
