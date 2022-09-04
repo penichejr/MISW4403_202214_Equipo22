@@ -20,7 +20,7 @@ export class ProductoCaracteristicoService {
       await this.productoCaracteristicoRepository.findOne({ where: { id } });
     if (!product)
       throw new BusinessLogicException(
-        'The museum with the given id was not found',
+        'The product with the given id was not found',
         BusinessError.NOT_FOUND,
       );
 
