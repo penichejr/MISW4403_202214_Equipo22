@@ -8,9 +8,12 @@ import { RecetaModule } from './receta/receta.module';
 import { RecetaEntity } from './receta/receta.entity';
 import { PaisModule } from './pais/pais.module';
 import { PaisEntity } from './pais/pais.entity';
+import { CategoriaModule } from './categoria/categoria.module';
+import { CategoriaEntity } from './categoria/categoria.entity';
 
 @Module({
-  imports: [
+  imports: [ 
+    CategoriaModule,
     RecetaModule,
     PaisModule,
     ProductoCaracteristicoModule,
@@ -21,11 +24,12 @@ import { PaisEntity } from './pais/pais.entity';
       username: 'postgres',
       password: 'postgres',
       database: 'culturasGastronomicas',
-      entities: [RecetaEntity, PaisEntity, ProductoCaracteristicoEntity],
+      entities: [RecetaEntity, PaisEntity, ProductoCaracteristicoEntity, CategoriaEntity],
       dropSchema: true,
       synchronize: true,
       keepConnectionAlive: true,
     }),
+    CategoriaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
