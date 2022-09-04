@@ -6,11 +6,14 @@ import { RecetaEntity } from './receta/receta.entity';
 import { PaisModule } from './pais/pais.module';
 import { PaisEntity } from './pais/pais.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CulturaGastronomicaModule } from './cultura-gastronomica/cultura-gastronomica.module';
+import { CulturaGastronomicaEntity } from './cultura-gastronomica/cultura-gastronomica.entity';
 
 @Module({
   imports: [
     RecetaModule,
     PaisModule,
+    CulturaGastronomicaModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -18,7 +21,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'postgres',
       password: 'postgres',
       database: 'culturasGastronomicas',
-      entities: [RecetaEntity, PaisEntity],
+      entities: [RecetaEntity, PaisEntity, CulturaGastronomicaEntity],
       dropSchema: true,
       synchronize: true,
       keepConnectionAlive: true,
