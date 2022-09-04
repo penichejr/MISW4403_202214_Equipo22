@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
@@ -8,12 +9,15 @@ import { RecetaModule } from './receta/receta.module';
 import { RecetaEntity } from './receta/receta.entity';
 import { PaisModule } from './pais/pais.module';
 import { PaisEntity } from './pais/pais.entity';
+import { RestauranteEspecializadoModule } from './restaurante-especializado/restaurante-especializado.module';
+import { RestauranteEspecializadoEntity } from './restaurante-especializado/restaurante-especializado.entity';
 
 @Module({
   imports: [
     RecetaModule,
     PaisModule,
     ProductoCaracteristicoModule,
+    RestauranteEspecializadoModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -21,7 +25,7 @@ import { PaisEntity } from './pais/pais.entity';
       username: 'postgres',
       password: 'postgres',
       database: 'culturasGastronomicas',
-      entities: [RecetaEntity, PaisEntity, ProductoCaracteristicoEntity],
+      entities: [RecetaEntity, PaisEntity, ProductoCaracteristicoEntity, RestauranteEspecializadoEntity],
       dropSchema: true,
       synchronize: true,
       keepConnectionAlive: true,
