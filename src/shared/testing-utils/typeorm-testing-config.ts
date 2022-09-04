@@ -1,5 +1,5 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CulturaGastronomicaEntity } from 'src/cultura-gastronomica/cultura-gastronomica.entity';
+import { CulturaGastronomicaEntity } from '../../cultura-gastronomica/cultura-gastronomica.entity';
 import { PaisEntity } from '../../pais/pais.entity';
 import { RecetaEntity } from '../../receta/receta.entity';
 

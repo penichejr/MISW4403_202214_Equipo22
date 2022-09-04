@@ -6,10 +6,10 @@ export class CulturaGastronomicaEntity {
     id: string;
 
     @Column()
-    name: string;
+    nombre: string;
 
     @Column()
-    description: string;
+    descripcion: string;
 
 
 //   @ManyToMany(() => PaisEntity, paisEntity => PaisEntity.culturasGastronomicas)
