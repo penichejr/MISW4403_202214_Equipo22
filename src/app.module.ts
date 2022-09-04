@@ -1,16 +1,19 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ProductoCaracteristicoEntity } from './producto-caracteristico/producto-caracteristico.entity';
+import { ProductoCaracteristicoModule } from './producto-caracteristico/producto-caracteristico.module';
 import { RecetaModule } from './receta/receta.module';
 import { RecetaEntity } from './receta/receta.entity';
 import { PaisModule } from './pais/pais.module';
 import { PaisEntity } from './pais/pais.entity';
-import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
     RecetaModule,
     PaisModule,
+    ProductoCaracteristicoModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -18,7 +21,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'postgres',
       password: 'postgres',
       database: 'culturasGastronomicas',
-      entities: [RecetaEntity, PaisEntity],
+      entities: [RecetaEntity, PaisEntity, ProductoCaracteristicoEntity],
       dropSchema: true,
       synchronize: true,
       keepConnectionAlive: true,
