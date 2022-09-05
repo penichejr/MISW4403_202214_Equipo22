@@ -60,7 +60,8 @@ describe('RestauranteEspecializadoService', () => {
     const restaurante: RestauranteEspecializadoEntity = {
       id: null,
       nombre: faker.company.name(),
-      ciudad: faker.address.city()
+      ciudad: faker.address.city(),
+      culturasGastronomicas: []
     }
  
     const newRestaurante: RestauranteEspecializadoEntity = await service.create(restaurante);

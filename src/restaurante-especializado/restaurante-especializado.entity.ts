@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+/* eslint-disable prettier/prettier */
+import { CulturaGastronomicaEntity } from '../cultura-gastronomica/cultura-gastronomica.entity';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class RestauranteEspecializadoEntity {
@@ -11,13 +13,14 @@ export class RestauranteEspecializadoEntity {
   @Column()
   ciudad: string;
 
-  //   @OneToOne(() => PaisEntity, pais => pais.restauranteEspecializado)
+  //   @ManyToOne(() => PaisEntity, pais => pais.restauranteEspecializado)
   //   @JoinColumn()
   //   pais: PaisEntity;
 
   //   @OneToMany(() => EstrellaMichelinEntity, estrellaMichelin => estrellaMichelin.restauranteEspecializado)
   //   estrellasMichelin: EstrellaMichelinEntity[];
 
-  //   @ManyToMany(() => CulturaGastronomicaEntity, culturaGastronomica => culturaGastronomica.restaurantesEspecializados)
-  //   culturasGastronomicas: CulturaGastronomicaEntity[];
+  @ManyToMany(() => CulturaGastronomicaEntity, culturaGastronomica => culturaGastronomica.restaurantesEspecializados)
+  @JoinTable()
+  culturasGastronomicas: CulturaGastronomicaEntity[];
 }

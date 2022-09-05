@@ -64,8 +64,8 @@ describe('CulturaGastronomicaService', () => {
     const culturaGastronomica: CulturaGastronomicaEntity = {
       id: '',
       nombre: 'Nuevo País',
-      descripcion: 'Nueva Description'
-      // restaurantesEspecializados: [],
+      descripcion: 'Nueva Description',
+      restaurantesEspecializados: [],
       // culturasGastronomicas: []
     };
 
