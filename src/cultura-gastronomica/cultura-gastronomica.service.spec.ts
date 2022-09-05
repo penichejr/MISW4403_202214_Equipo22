@@ -65,7 +65,7 @@ describe('CulturaGastronomicaService', () => {
       id: '',
       nombre: 'Nuevo País',
       descripcion: 'Nueva Description',
-      // restaurantesEspecializados: [],
+      restaurantesEspecializados: [],
       // culturasGastronomicas: [],
       paises: [],
       recetas: []

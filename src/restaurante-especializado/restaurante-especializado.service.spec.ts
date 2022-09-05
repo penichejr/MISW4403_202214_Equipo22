@@ -62,6 +62,7 @@ describe('RestauranteEspecializadoService', () => {
       id: null,
       nombre: faker.company.name(),
       ciudad: faker.address.city(),
+      culturasGastronomicas: [],
       pais: undefined
     }
  
