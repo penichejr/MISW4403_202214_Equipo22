@@ -75,7 +75,7 @@ describe('PaisService', () => {
       preparacion: faker.lorem.sentence(),
       foto: faker.image.imageUrl(),
       video: faker.image.imageUrl(),
-      // culturaGastronomica: null
+      culturaGastronomica: undefined
     };
 
     const newReceta: RecetaEntity = await service.create(receta);

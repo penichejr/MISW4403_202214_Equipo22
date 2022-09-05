@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { RestauranteEspecializadoEntity } from '../restaurante-especializado/restaurante-especializado.entity';
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { PaisEntity } from '../pais/pais.entity';
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { RecetaEntity } from '../receta/receta.entity';
 
 @Entity()
 export class CulturaGastronomicaEntity {
@@ -13,18 +15,22 @@ export class CulturaGastronomicaEntity {
   @Column()
   descripcion: string;
 
-  //   @ManyToMany(() => PaisEntity, paisEntity => PaisEntity.culturasGastronomicas)
-  //   @JoinColumn()
-  //   paises: PaisEntity[];
-
   @ManyToMany(() => RestauranteEspecializadoEntity, restaurante => restaurante.culturasGastronomicas)
   restaurantesEspecializados: RestauranteEspecializadoEntity[];
+
+   @ManyToMany(() => PaisEntity, paisEntity => paisEntity.culturasGastronomicas)
+   @JoinTable()
+   paises: PaisEntity[];
 
   //   @ManyToOne(() => RecetaEntity, recetaEntity => receta.culturasGastronomicas)
   //   @JoinColumn()
   //   recetas: recetaEntity[];
 
-  //   @ManyToMany(() => ProductoCaracteristicoEntity, productoCaracteristicoEntity => productosCaracteristicos.culturasGastronomicas)
-  //   @JoinColumn()
-  //   productosCaracteristicos: productoCaracteristicoEntity[];
+   @OneToMany(() => RecetaEntity, receta => receta.culturaGastronomica)
+   recetas: RecetaEntity[];
+
+//   @ManyToMany(() => ProductoCaracteristicoEntity, productoCaracteristicoEntity => productosCaracteristicos.culturasGastronomicas)
+//   @JoinColumn()
+//   productosCaracteristicos: productoCaracteristicoEntity[];
+
 }
