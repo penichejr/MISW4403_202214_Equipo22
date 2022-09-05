@@ -16,14 +16,14 @@ export class RecetaService {
 
   async findAll(): Promise<RecetaEntity[]> {
     return await this.recetaRepository.find({
-      //relations: ['culturaGastronomica'],
+      relations: ['culturaGastronomica'],
     });
   }
 
   async findOne(id: string): Promise<RecetaEntity> {
     const receta: RecetaEntity = await this.recetaRepository.findOne({
       where: { id },
-      //relations: ['culturaGastronomica'],
+      relations: ['culturaGastronomica'],
     });
     if (!receta)
       throw new BusinessLogicException(
