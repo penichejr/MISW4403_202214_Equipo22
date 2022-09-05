@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { CategoriaEntity } from '../categoria/categoria.entity';
 
 @Entity()
 export class ProductoCaracteristicoEntity {
@@ -14,4 +15,7 @@ export class ProductoCaracteristicoEntity {
 
   @Column()
   historia: string;
+
+  @ManyToOne(() => CategoriaEntity, categoria => categoria.productos)
+    categoria: CategoriaEntity;
 }
