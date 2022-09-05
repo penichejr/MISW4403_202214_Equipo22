@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { PaisEntity } from '../pais/pais.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class RestauranteEspecializadoEntity {
@@ -11,9 +12,8 @@ export class RestauranteEspecializadoEntity {
   @Column()
   ciudad: string;
 
-  //   @OneToOne(() => PaisEntity, pais => pais.restauranteEspecializado)
-  //   @JoinColumn()
-  //   pais: PaisEntity;
+  @ManyToOne(() => PaisEntity, pais => pais.restaurantesEspecializados)
+  pais: PaisEntity;
 
   //   @OneToMany(() => EstrellaMichelinEntity, estrellaMichelin => estrellaMichelin.restauranteEspecializado)
   //   estrellasMichelin: EstrellaMichelinEntity[];

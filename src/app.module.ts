@@ -15,6 +15,8 @@ import { CategoriaModule } from './categoria/categoria.module';
 import { CategoriaEntity } from './categoria/categoria.entity';
 import { RestauranteEspecializadoModule } from './restaurante-especializado/restaurante-especializado.module';
 import { RestauranteEspecializadoEntity } from './restaurante-especializado/restaurante-especializado.entity';
+import { PaisRestauranteEspecializadoModule } from './pais-restaurante-especializado/pais-restaurante-especializado.module';
+import { PaisRestauranteModule } from './pais-restaurante/pais-restaurante.module';
 
 @Module({
   imports: [ 
@@ -37,6 +39,8 @@ import { RestauranteEspecializadoEntity } from './restaurante-especializado/rest
       keepConnectionAlive: true,
     }),
     CategoriaModule,
+    PaisRestauranteEspecializadoModule,
+    PaisRestauranteModule,
   ],
   controllers: [AppController],
   providers: [AppService],

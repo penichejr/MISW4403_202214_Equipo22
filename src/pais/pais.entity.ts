@@ -1,3 +1,4 @@
+import { CulturaGastronomicaEntity } from '../cultura-gastronomica/cultura-gastronomica.entity';
 import {
   Column,
   Entity,
@@ -5,6 +6,7 @@ import {
   ManyToMany,
   OneToMany,
 } from 'typeorm';
+import { RestauranteEspecializadoEntity } from '../restaurante-especializado/restaurante-especializado.entity';
 
 @Entity()
 export class PaisEntity {
@@ -14,10 +16,12 @@ export class PaisEntity {
   @Column({ unique: true })
   nombre: string;
 
-  //El JoinTable se pone en CulturaGastronomicaEntity
-  //   @ManyToMany(() => CulturaGastronomicaEntity, culturaGastronomica => culturaGastronomica.paises)
-  //   culturasGastronomicas: CulturaGastronomicaEntity[];
+  @ManyToMany(
+    () => CulturaGastronomicaEntity,
+    (culturaGastronomica) => culturaGastronomica.paises,
+  )
+  culturasGastronomicas: CulturaGastronomicaEntity[];
 
-  // @OneToMany(() => RestauranteEspecializadoEntity, restauranteEspecializado => restauranteEspecializado.pais)
-  // restaurantesEspecializados: RestauranteEspecializadoEntity[];
+  @OneToMany(() => RestauranteEspecializadoEntity, restauranteEspecializado => restauranteEspecializado.pais)
+  restaurantesEspecializados: RestauranteEspecializadoEntity[];
 }
