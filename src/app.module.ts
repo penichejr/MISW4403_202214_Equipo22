@@ -16,6 +16,8 @@ import { CategoriaEntity } from './categoria/categoria.entity';
 import { RestauranteEspecializadoModule } from './restaurante-especializado/restaurante-especializado.module';
 import { RestauranteEspecializadoEntity } from './restaurante-especializado/restaurante-especializado.entity';
 import { CategoriaProductoCaracteristicoModule } from './categoria-producto-caracteristico/categoria-producto-caracteristico.module';
+import { RestauranteEspecializadoCulturaGastronomicaModule } from './restaurante-especializado-cultura-gastronomica/restaurante-especializado-cultura-gastronomica.module';
+import { PaisRestauranteModule } from './pais-restaurante/pais-restaurante.module';
 
 @Module({
   imports: [ 
@@ -39,6 +41,8 @@ import { CategoriaProductoCaracteristicoModule } from './categoria-producto-cara
     }),
     CategoriaModule,
     CategoriaProductoCaracteristicoModule,
+    RestauranteEspecializadoCulturaGastronomicaModule,
+    PaisRestauranteModule,
   ],
   controllers: [AppController],
   providers: [AppService],

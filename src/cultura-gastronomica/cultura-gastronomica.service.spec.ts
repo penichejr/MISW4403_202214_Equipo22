@@ -64,9 +64,11 @@ describe('CulturaGastronomicaService', () => {
     const culturaGastronomica: CulturaGastronomicaEntity = {
       id: '',
       nombre: 'Nuevo País',
-      descripcion: 'Nueva Description'
-      // restaurantesEspecializados: [],
-      // culturasGastronomicas: []
+      descripcion: 'Nueva Description',
+      restaurantesEspecializados: [],
+      // culturasGastronomicas: [],
+      paises: [],
+      recetas: []
     };
 
     const newCG: CulturaGastronomicaEntity = await service.create(culturaGastronomica);

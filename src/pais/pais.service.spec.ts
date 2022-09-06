@@ -4,7 +4,6 @@ import { Repository } from 'typeorm';
 import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
 import { PaisEntity } from './pais.entity';
 import { PaisService } from './pais.service';
-import { faker } from '@faker-js/faker';
 
 describe('PaisService', () => {
   let service: PaisService;
@@ -63,8 +62,8 @@ describe('PaisService', () => {
     const pais: PaisEntity = {
       id: '',
       nombre: 'Nuevo País',
-      // restaurantesEspecializados: [],
-      // culturasGastronomicas: []
+      restaurantesEspecializados: [],
+      culturasGastronomicas: []
     };
 
     const newPais: PaisEntity = await service.create(pais);

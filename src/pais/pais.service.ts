@@ -16,14 +16,14 @@ export class PaisService {
 
   async findAll(): Promise<PaisEntity[]> {
     return await this.paisRepository.find({
-      //relations: ['restaurantesEspecializados', 'culturasGastronomicas'],
+      relations: ['restaurantesEspecializados', 'culturasGastronomicas'],
     });
   }
 
   async findOne(id: string): Promise<PaisEntity> {
     const pais: PaisEntity = await this.paisRepository.findOne({
       where: { id },
-      //relations: ['restaurantesEspecializados', 'culturasGastronomicas'],
+      relations: ['restaurantesEspecializados', 'culturasGastronomicas'],
     });
     if (!pais)
       throw new BusinessLogicException(
