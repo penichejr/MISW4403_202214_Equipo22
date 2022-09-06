@@ -57,7 +57,7 @@ describe('CategoriaService', () => {
     const category: CategoriaEntity = {
       id: "",
       nombre: faker.company.name(), 
-      //exhibitions: [],
+      productos: [],
       //artworks: []
     }
 

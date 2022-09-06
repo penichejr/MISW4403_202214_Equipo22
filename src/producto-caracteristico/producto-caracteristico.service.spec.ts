@@ -63,7 +63,7 @@ describe('ProductoCaracteristicoService', () => {
       nombre: faker.company.name(), 
       descripcion: faker.lorem.sentence(), 
       historia: faker.lorem.sentence(), 
-      //exhibitions: [],
+      categoria: null,
       //artworks: []
     }
 
