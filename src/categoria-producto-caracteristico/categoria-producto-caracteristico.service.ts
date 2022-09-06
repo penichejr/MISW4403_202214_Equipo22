@@ -24,7 +24,7 @@ export class CategoriaProductoCaracteristicoService {
        
         const categorias: CategoriaEntity = await this.categoriasRepository.findOne({where: {id: categoriasId}, relations: ["productos"]}) 
         if (!categorias)
-          throw new BusinessLogicException("The categorias with the given id was not found", BusinessError.NOT_FOUND);
+          throw new BusinessLogicException("The categoria with the given id was not found", BusinessError.NOT_FOUND);
      
         categorias.productos = [...categorias.productos, producto];
         return await this.categoriasRepository.save(categorias);
@@ -37,12 +37,12 @@ export class CategoriaProductoCaracteristicoService {
         
         const categorias: CategoriaEntity = await this.categoriasRepository.findOne({where: {id: categoriasId}, relations: ["productos"]}); 
         if (!categorias)
-          throw new BusinessLogicException("The categorias with the given id was not found", BusinessError.NOT_FOUND)
+          throw new BusinessLogicException("The categoria with the given id was not found", BusinessError.NOT_FOUND)
     
         const categoriasProductoCaracteristico: ProductoCaracteristicoEntity = categorias.productos.find(e => e.id === producto.id);
     
         if (!categoriasProductoCaracteristico)
-          throw new BusinessLogicException("The producto with the given id is not associated to the categorias", BusinessError.PRECONDITION_FAILED)
+          throw new BusinessLogicException("The producto with the given id is not associated to the categoria", BusinessError.PRECONDITION_FAILED)
     
         return categoriasProductoCaracteristico;
     }
@@ -50,7 +50,7 @@ export class CategoriaProductoCaracteristicoService {
     async findProductoCaracteristicosByCategoriaId(categoriasId: string): Promise<ProductoCaracteristicoEntity[]> {
         const categorias: CategoriaEntity = await this.categoriasRepository.findOne({where: {id: categoriasId}, relations: ["productos"]});
         if (!categorias)
-          throw new BusinessLogicException("The categorias with the given id was not found", BusinessError.NOT_FOUND)
+          throw new BusinessLogicException("The categoria with the given id was not found", BusinessError.NOT_FOUND)
         
         return categorias.productos;
     }
@@ -59,7 +59,7 @@ export class CategoriaProductoCaracteristicoService {
         const categorias: CategoriaEntity = await this.categoriasRepository.findOne({where: {id: categoriasId}, relations: ["productos"]});
      
         if (!categorias)
-          throw new BusinessLogicException("The categorias with the given id was not found", BusinessError.NOT_FOUND)
+          throw new BusinessLogicException("The categoria with the given id was not found", BusinessError.NOT_FOUND)
      
         for (let i = 0; i < productos.length; i++) {
           const producto: ProductoCaracteristicoEntity = await this.productoRepository.findOne({where: {id: productos[i].id}});
@@ -78,12 +78,12 @@ export class CategoriaProductoCaracteristicoService {
      
         const categorias: CategoriaEntity = await this.categoriasRepository.findOne({where: {id: categoriasId}, relations: ["productos"]});
         if (!categorias)
-          throw new BusinessLogicException("The categorias with the given id was not found", BusinessError.NOT_FOUND)
+          throw new BusinessLogicException("The categoria with the given id was not found", BusinessError.NOT_FOUND)
      
         const categoriasProductoCaracteristico: ProductoCaracteristicoEntity = categorias.productos.find(e => e.id === producto.id);
      
         if (!categoriasProductoCaracteristico)
-            throw new BusinessLogicException("The producto with the given id is not associated to the categorias", BusinessError.PRECONDITION_FAILED)
+            throw new BusinessLogicException("The producto with the given id is not associated to the categoria", BusinessError.PRECONDITION_FAILED)
 
         categorias.productos = categorias.productos.filter(e => e.id !== productoId);
         await this.categoriasRepository.save(categorias);

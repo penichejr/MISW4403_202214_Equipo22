@@ -44,11 +44,7 @@ describe('CategoriaProductoCaracteristicoService', () => {
     }
 
     categoria = await categoriaRepository.save({
-      name: faker.company.name(), 
-      description: faker.lorem.sentence(), 
-      address: faker.address.secondaryAddress(), 
-      city: faker.address.city(), 
-      image: faker.image.imageUrl(),
+      nombre: faker.company.name(), 
       productos: productosList
     })
   }
