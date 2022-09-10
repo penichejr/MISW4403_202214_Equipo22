@@ -5,7 +5,7 @@ import { PaisEntity } from '../pais/pais.entity';
 
 @Entity()
 export class RestauranteEspecializadoEntity {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()

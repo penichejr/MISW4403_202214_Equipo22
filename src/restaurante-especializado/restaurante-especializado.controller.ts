@@ -6,7 +6,7 @@ import { RestauranteEspecializadoDto } from './restaurante-especializado.dto';
 import { RestauranteEspecializadoEntity } from './restaurante-especializado.entity';
 import { RestauranteEspecializadoService } from './restaurante-especializado.service';
 
-@Controller('restaurante-especializado')
+@Controller('restaurantesespecializados')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class RestauranteEspecializadoController {
   constructor(private readonly restauranteService: RestauranteEspecializadoService) {}

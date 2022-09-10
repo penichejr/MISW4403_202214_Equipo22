@@ -6,7 +6,7 @@ import { CulturaGastronomicaEntity } from 'src/cultura-gastronomica/cultura-gast
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { RestauranteEspecializadoCulturaGastronomicaService } from './restaurante-especializado-cultura-gastronomica.service';
 
-@Controller('restaurante-especializado-cultura-gastronomica')
+@Controller('restaurantesespecializados')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class RestauranteEspecializadoCulturaGastronomicaController {
   constructor(private readonly restauranteCulturaService: RestauranteEspecializadoCulturaGastronomicaService){}

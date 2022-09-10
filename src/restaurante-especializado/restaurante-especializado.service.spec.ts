@@ -6,7 +6,6 @@ import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-co
 import { Repository } from 'typeorm';
 import { RestauranteEspecializadoEntity } from './restaurante-especializado.entity';
 import { RestauranteEspecializadoService } from './restaurante-especializado.service';
-import { PaisEntity } from 'src/pais/pais.entity';
 
 describe('RestauranteEspecializadoService', () => {
   let service: RestauranteEspecializadoService;
@@ -59,7 +58,7 @@ describe('RestauranteEspecializadoService', () => {
 
   it('create should return a new restaurante', async () => {
     const restaurante: RestauranteEspecializadoEntity = {
-      id: null,
+      id: '',
       nombre: faker.company.name(),
       ciudad: faker.address.city(),
       culturasGastronomicas: [],
