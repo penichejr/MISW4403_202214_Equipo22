@@ -1,11 +1,11 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
-import { CategoriaDto } from './Categoria.dto';
-import { CategoriaEntity } from './Categoria.entity';
-import { CategoriaService } from './Categoria.service';
+import { CategoriaDto } from './categoria.dto';
+import { CategoriaEntity } from './categoria.entity';
+import { CategoriaService } from './categoria.service';
 
-@Controller('Categorias')
+@Controller('categorias')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class CategoriaController {
     constructor(private readonly CategoriaService: CategoriaService) {}

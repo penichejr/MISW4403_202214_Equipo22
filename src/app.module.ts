@@ -39,7 +39,6 @@ import { PaisRestauranteModule } from './pais-restaurante/pais-restaurante.modul
       synchronize: true,
       keepConnectionAlive: true,
     }),
-    CategoriaModule,
     CategoriaProductoCaracteristicoModule,
     RestauranteEspecializadoCulturaGastronomicaModule,
     PaisRestauranteModule,
