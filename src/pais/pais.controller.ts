@@ -26,13 +26,13 @@ export class PaisController {
         return await this.paisService.create(pais);
     }
 
-    @Put(':museumId')
+    @Put(':paisId')
     async update(@Param('paisId') paisId: string, @Body() paisDto: PaisDto) {
         const pais: PaisEntity = plainToInstance(PaisEntity, paisDto);
         return await this.paisService.update(paisId, pais);
     }
 
-    @Delete(':museumId')
+    @Delete(':paisId')
     @HttpCode(204)
     async delete(@Param('paisId') paisId: string) {
         return await this.paisService.delete(paisId);
