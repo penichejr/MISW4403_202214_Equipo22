@@ -10,28 +10,28 @@ import { CategoriaProductoCaracteristicoService } from './categoria-producto-car
 export class CategoriaProductoCaracteristicoController {
     constructor(private readonly categoriaProductoCaracteristicoService: CategoriaProductoCaracteristicoService){}
 
-    @Post(':categoriaId/productoCaracteristicos/:productoCaracteristicoId')
+    @Post(':categoriaId/productocaracteristico/:productoCaracteristicoId')
     async addProductoCaracteristicoCategoria(@Param('categoriaId') categoriaId: string, @Param('productoCaracteristicoId') productoCaracteristicoId: string){
         return await this.categoriaProductoCaracteristicoService.addProductoCaracteristicoCategoria(categoriaId, productoCaracteristicoId);
     }
 
-    @Get(':categoriaId/productoCaracteristicos/:productoCaracteristicoId')
+    @Get(':categoriaId/productocaracteristico/:productoCaracteristicoId')
     async findProductoCaracteristicoByCategoriaIdProductoCaracteristicoId(@Param('categoriaId') categoriaId: string, @Param('productoCaracteristicoId') productoCaracteristicoId: string){
         return await this.categoriaProductoCaracteristicoService.findProductoCaracteristicoByCategoriaIdProductoCaracteristicoId(categoriaId, productoCaracteristicoId);
     }
 
-    @Get(':categoriaId/productoCaracteristicos')
+    @Get(':categoriaId/productocaracteristico')
     async findProductoCaracteristicosByCategoriaId(@Param('categoriaId') categoriaId: string){
         return await this.categoriaProductoCaracteristicoService.findProductoCaracteristicosByCategoriaId(categoriaId);
     }
 
-    @Put(':categoriaId/productoCaracteristicos')
-    async associateProductoCaracteristicosCategoria(@Body() productoCaracteristicosDto: ProductoCaracteristicoDto[], @Param('categoriaId') categoriaId: string){
-        const productoCaracteristicos = plainToInstance(ProductoCaracteristicoEntity, productoCaracteristicosDto)
-        return await this.categoriaProductoCaracteristicoService.associateProductoCaracteristicosCategoria(categoriaId, productoCaracteristicos);
+    @Put(':categoriaId/productocaracteristico')
+    async associateProductoCaracteristicosCategoria(@Body() productocaracteristicoDto: ProductoCaracteristicoDto[], @Param('categoriaId') categoriaId: string){
+        const productocaracteristico = plainToInstance(ProductoCaracteristicoEntity, productocaracteristicoDto)
+        return await this.categoriaProductoCaracteristicoService.associateProductoCaracteristicosCategoria(categoriaId, productocaracteristico);
     }
     
-    @Delete(':categoriaId/productoCaracteristicos/:productoCaracteristicoId')
+    @Delete(':categoriaId/productocaracteristico/:productoCaracteristicoId')
     @HttpCode(204)
     async deleteProductoCaracteristicoCategoria(@Param('categoriaId') categoriaId: string, @Param('productoCaracteristicoId') productoCaracteristicoId: string){
         return await this.categoriaProductoCaracteristicoService.deleteProductoCaracteristicoCategoria(categoriaId, productoCaracteristicoId);

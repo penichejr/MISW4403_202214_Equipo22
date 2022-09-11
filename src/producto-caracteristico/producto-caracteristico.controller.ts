@@ -5,7 +5,7 @@ import { ProductoCaracteristicoDto } from './producto-caracteristico.dto';
 import { ProductoCaracteristicoEntity } from './producto-caracteristico.entity';
 import { ProductoCaracteristicoService } from './producto-caracteristico.service';
 
-@Controller('ProductoCaracteristico')
+@Controller('productocaracteristico')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class ProductoCaracteristicoController {
     constructor(private readonly ProductoCaracteristicoService: ProductoCaracteristicoService) {}
