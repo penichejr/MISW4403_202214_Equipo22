@@ -47,7 +47,7 @@ export class CulturaGastronomicaRestauranteEspecializadoService {
         return culturaGastronomicaRestauranteEspecializado;
     }
      
-    async findRestauranteEspecializadosByCulturaGastronomicaId(culturaGastronomicaId: string): Promise<RestauranteEspecializadoEntity[]> {
+    async findRestaurantesEspecializadosByCulturaGastronomicaId(culturaGastronomicaId: string): Promise<RestauranteEspecializadoEntity[]> {
         const culturaGastronomica: CulturaGastronomicaEntity = await this.culturaGastronomicaRepository.findOne({where: {id: culturaGastronomicaId}, relations: ["restaurantesEspecializados"]});
         if (!culturaGastronomica)
           throw new BusinessLogicException("La cultura gastronomica con el id dado no fue encontrada", BusinessError.NOT_FOUND)
