@@ -6,7 +6,6 @@ import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-co
 import { Repository } from 'typeorm';
 import { RestauranteEspecializadoEntity } from './restaurante-especializado.entity';
 import { RestauranteEspecializadoService } from './restaurante-especializado.service';
-import { PaisEntity } from 'src/pais/pais.entity';
 
 describe('RestauranteEspecializadoService', () => {
   let service: RestauranteEspecializadoService;
@@ -59,7 +58,7 @@ describe('RestauranteEspecializadoService', () => {
 
   it('create should return a new restaurante', async () => {
     const restaurante: RestauranteEspecializadoEntity = {
-      id: null,
+      id: '',
       nombre: faker.company.name(),
       ciudad: faker.address.city(),
       culturasGastronomicas: [],
@@ -95,14 +94,14 @@ describe('RestauranteEspecializadoService', () => {
     await expect(() => service.update("0", restaurante)).rejects.toHaveProperty("message", "El restaurante con el id dado no fue encontrado")
   });
 
-  it('delete should remove a restaurante', async () => {
+  it('delete debería eliminar un restaurante', async () => {
     const restaurante: RestauranteEspecializadoEntity = restaurantesList[0];
     await service.delete(restaurante.id);
     const deletedRestaurante: RestauranteEspecializadoEntity = await repository.findOne({ where: { id: restaurante.id } })
     expect(deletedRestaurante).toBeNull();
   });
 
-  it('delete should throw an exception for an invalid restaurante', async () => {
+  it('delete debería arrojar una excepción para un restaurante inválido', async () => {
     const restaurante: RestauranteEspecializadoEntity = restaurantesList[0];
     await service.delete(restaurante.id);
     await expect(() => service.delete("0")).rejects.toHaveProperty("message", "El restaurante con el id dado no fue encontrado")

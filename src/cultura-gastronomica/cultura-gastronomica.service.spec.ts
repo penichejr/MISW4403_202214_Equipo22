@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -16,8 +17,7 @@ describe('CulturaGastronomicaService', () => {
     for (let i = 0; i < 5; i++) {
       const cultura: CulturaGastronomicaEntity = await repository.save({
         nombre: `Cultura #${i + 1}`,
-        descripcion: `Descript #${i + 1}`,
-
+        descripcion: `Descript #${i + 1}`
       });
       culturasGastronomicasList.push(cultura);
     }
@@ -63,7 +63,7 @@ describe('CulturaGastronomicaService', () => {
   it('Create debería retornar una nueva cultura gastronomica', async () => {
     const culturaGastronomica: CulturaGastronomicaEntity = {
       id: '',
-      nombre: 'Nuevo País',
+      nombre: faker.name.fullName(),
       descripcion: 'Nueva Description',
       restaurantesEspecializados: [],
       // culturasGastronomicas: [],

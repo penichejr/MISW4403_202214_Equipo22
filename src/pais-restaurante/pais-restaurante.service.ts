@@ -17,7 +17,7 @@ export class PaisRestauranteService {
 
     @InjectRepository(RestauranteEspecializadoEntity)
     private readonly restauranteRepository: Repository<RestauranteEspecializadoEntity>,
-  ) {}
+  ) { }
 
   async addRestaurantePais(
     paisId: string,
@@ -134,18 +134,18 @@ export class PaisRestauranteService {
   }
 
   async deleteRestaurantePais(paisId: string, restauranteId: string) {
-    const restauranteEsp: RestauranteEspecializadoEntity = await this.restauranteRepository.findOne({where: { id: restauranteId },});
+    const restauranteEsp: RestauranteEspecializadoEntity = await this.restauranteRepository.findOne({ where: { id: restauranteId }, });
     if (!restauranteEsp)
       throw new BusinessLogicException('El restaurante con el id indicado no fue encontrado', BusinessError.NOT_FOUND,);
 
-    const paisEnt: PaisEntity = await this.paisRepository.findOne({where: { id: paisId },relations: ['restaurantesEspecializados'],});
+    const paisEnt: PaisEntity = await this.paisRepository.findOne({ where: { id: paisId }, relations: ['restaurantesEspecializados'], });
     if (!paisEnt)
       throw new BusinessLogicException('El país con el id indicado no fue encontrado', BusinessError.NOT_FOUND,);
 
     const paisRest: RestauranteEspecializadoEntity = paisEnt.restaurantesEspecializados.find((r) => r.id === restauranteEsp.id);
 
     if (!paisRest)
-      throw new BusinessLogicException('El restaurante con el id indicado no está asociado al país',BusinessError.PRECONDITION_FAILED,);
+      throw new BusinessLogicException('El restaurante con el id indicado no está asociado al país', BusinessError.PRECONDITION_FAILED,);
 
     paisEnt.restaurantesEspecializados = paisEnt.restaurantesEspecializados.filter((r) => r.id !== restauranteId);
     await this.paisRepository.save(paisEnt);

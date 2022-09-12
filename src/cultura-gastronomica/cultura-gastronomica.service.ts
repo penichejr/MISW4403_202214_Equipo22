@@ -19,7 +19,7 @@ export class CulturaGastronomicaService {
 
     async findOne(id: string): Promise<CulturaGastronomicaEntity> {
         const culturaGastronomica: CulturaGastronomicaEntity = await this.culturaGastronomicaRepository.findOne({
-            where: {id}, // relations: ["paises", "recetas", "productosCaracteristicos", "restaurantesEspecializados"] 
+            where: {id} //, relations: ["paises", "recetas", "productosCaracteristicos", "restaurantesEspecializados"] 
         } );
         if (!culturaGastronomica)
           throw new BusinessLogicException("La cultura gastronomica con el id indicado no fue encontrado", BusinessError.NOT_FOUND);
