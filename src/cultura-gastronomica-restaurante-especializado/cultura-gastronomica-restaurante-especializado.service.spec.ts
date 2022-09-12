@@ -117,12 +117,12 @@ describe('CulturaGastronomicaRestauranteEspecializadoService', () => {
   });
 
   it('findRestauranteEspecializadosByCulturaGastronomicaId should return restaurantesEspecializados by culturaGastronomica', async ()=>{
-    const restaurantesEspecializados: RestauranteEspecializadoEntity[] = await service.findRestauranteEspecializadosByCulturaGastronomicaId(culturaGastronomica.id);
+    const restaurantesEspecializados: RestauranteEspecializadoEntity[] = await service.findRestaurantesEspecializadosByCulturaGastronomicaId(culturaGastronomica.id);
     expect(restaurantesEspecializados.length).toBe(0)
   });
 
   it('findRestauranteEspecializadosByCulturaGastronomicaId should throw an exception for an invalid culturaGastronomica', async () => {
-    await expect(()=> service.findRestauranteEspecializadosByCulturaGastronomicaId("0")).rejects.toHaveProperty("message", "La cultura gastronomica con el id dado no fue encontrada"); 
+    await expect(()=> service.findRestaurantesEspecializadosByCulturaGastronomicaId("0")).rejects.toHaveProperty("message", "La cultura gastronomica con el id dado no fue encontrada"); 
   });
 
   it('associateRestauranteEspecializadosCulturaGastronomica should update restaurantesEspecializados list for a culturaGastronomica', async () => {
