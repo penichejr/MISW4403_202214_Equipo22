@@ -8,34 +8,34 @@ import { CategoriaService } from './categoria.service';
 @Controller('categorias')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class CategoriaController {
-    constructor(private readonly CategoriaService: CategoriaService) {}
+    constructor(private readonly categoriaService: CategoriaService) {}
 
   @Get()
   async findAll() {
-    return await this.CategoriaService.findAll();
+    return await this.categoriaService.findAll();
   }
 
   @Get(':CategoriaId')
   async findOne(@Param('CategoriaId') CategoriaId: string) {
-    return await this.CategoriaService.findOne(CategoriaId);
+    return await this.categoriaService.findOne(CategoriaId);
   }
 
   @Post()
-  async create(@Body() CategoriaDto: CategoriaDto) {
-    const Categoria: CategoriaEntity = plainToInstance(CategoriaEntity, CategoriaDto);
-    return await this.CategoriaService.create(Categoria);
+  async create(@Body() categoriaDto: CategoriaDto) {
+    const Categoria: CategoriaEntity = plainToInstance(CategoriaEntity, categoriaDto);
+    return await this.categoriaService.create(Categoria);
   }
 
   @Put(':CategoriaId')
-  async update(@Param('CategoriaId') CategoriaId: string, @Body() CategoriaDto: CategoriaDto) {
-    const Categoria: CategoriaEntity = plainToInstance(CategoriaEntity, CategoriaDto);
-    return await this.CategoriaService.update(CategoriaId, Categoria);
+  async update(@Param('CategoriaId') CategoriaId: string, @Body() categoriaDto: CategoriaDto) {
+    const Categoria: CategoriaEntity = plainToInstance(CategoriaEntity, categoriaDto);
+    return await this.categoriaService.update(CategoriaId, Categoria);
   }
 
   @Delete(':CategoriaId')
   @HttpCode(204)
   async delete(@Param('CategoriaId') CategoriaId: string) {
-    return await this.CategoriaService.delete(CategoriaId);
+    return await this.categoriaService.delete(CategoriaId);
   }
 
 }

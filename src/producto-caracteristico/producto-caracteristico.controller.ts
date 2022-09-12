@@ -8,34 +8,34 @@ import { ProductoCaracteristicoService } from './producto-caracteristico.service
 @Controller('productocaracteristico')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class ProductoCaracteristicoController {
-    constructor(private readonly ProductoCaracteristicoService: ProductoCaracteristicoService) {}
+    constructor(private readonly productoCaracteristicoService: ProductoCaracteristicoService) {}
 
   @Get()
   async findAll() {
-    return await this.ProductoCaracteristicoService.findAll();
+    return await this.productoCaracteristicoService.findAll();
   }
 
   @Get(':ProductoCaracteristicoId')
   async findOne(@Param('ProductoCaracteristicoId') ProductoCaracteristicoId: string) {
-    return await this.ProductoCaracteristicoService.findOne(ProductoCaracteristicoId);
+    return await this.productoCaracteristicoService.findOne(ProductoCaracteristicoId);
   }
 
   @Post()
-  async create(@Body() ProductoCaracteristicoDto: ProductoCaracteristicoDto) {
-    const ProductoCaracteristico: ProductoCaracteristicoEntity = plainToInstance(ProductoCaracteristicoEntity, ProductoCaracteristicoDto);
-    return await this.ProductoCaracteristicoService.create(ProductoCaracteristico);
+  async create(@Body() productoCaracteristicoDto: ProductoCaracteristicoDto) {
+    const ProductoCaracteristico: ProductoCaracteristicoEntity = plainToInstance(ProductoCaracteristicoEntity, productoCaracteristicoDto);
+    return await this.productoCaracteristicoService.create(ProductoCaracteristico);
   }
 
   @Put(':ProductoCaracteristicoId')
-  async update(@Param('ProductoCaracteristicoId') ProductoCaracteristicoId: string, @Body() ProductoCaracteristicoDto: ProductoCaracteristicoDto) {
-    const ProductoCaracteristico: ProductoCaracteristicoEntity = plainToInstance(ProductoCaracteristicoEntity, ProductoCaracteristicoDto);
-    return await this.ProductoCaracteristicoService.update(ProductoCaracteristicoId, ProductoCaracteristico);
+  async update(@Param('ProductoCaracteristicoId') ProductoCaracteristicoId: string, @Body() productoCaracteristicoDto: ProductoCaracteristicoDto) {
+    const ProductoCaracteristico: ProductoCaracteristicoEntity = plainToInstance(ProductoCaracteristicoEntity, productoCaracteristicoDto);
+    return await this.productoCaracteristicoService.update(ProductoCaracteristicoId, ProductoCaracteristico);
   }
 
   @Delete(':ProductoCaracteristicoId')
   @HttpCode(204)
   async delete(@Param('ProductoCaracteristicoId') ProductoCaracteristicoId: string) {
-    return await this.ProductoCaracteristicoService.delete(ProductoCaracteristicoId);
+    return await this.productoCaracteristicoService.delete(ProductoCaracteristicoId);
   }
 
 }
