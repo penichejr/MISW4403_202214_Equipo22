@@ -18,6 +18,11 @@ import { RestauranteEspecializadoEntity } from './restaurante-especializado/rest
 import { CategoriaProductoCaracteristicoModule } from './categoria-producto-caracteristico/categoria-producto-caracteristico.module';
 import { RestauranteEspecializadoCulturaGastronomicaModule } from './restaurante-especializado-cultura-gastronomica/restaurante-especializado-cultura-gastronomica.module';
 import { PaisRestauranteModule } from './pais-restaurante/pais-restaurante.module';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './user/roles.guard';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [ 
@@ -42,8 +47,14 @@ import { PaisRestauranteModule } from './pais-restaurante/pais-restaurante.modul
     CategoriaProductoCaracteristicoModule,
     RestauranteEspecializadoCulturaGastronomicaModule,
     PaisRestauranteModule,
+    UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, JwtService,
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    }],
 })
 export class AppModule {}
