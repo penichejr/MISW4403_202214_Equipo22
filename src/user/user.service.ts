@@ -7,7 +7,7 @@ import { User } from './user';
 export class UserService {
   private users: User[] = [
     new User(1, "admin", "admin", [Role.ADMIN]),
-    new User(2, "user", "admin", [Role.USER])
+    new User(2, "user", "admin", [Role.USER]),
   ];
 
   async findOne(username: string): Promise<User | undefined> {
