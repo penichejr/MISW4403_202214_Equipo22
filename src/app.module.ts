@@ -20,6 +20,9 @@ import { RestauranteEspecializadoCulturaGastronomicaModule } from './restaurante
 import { PaisRestauranteModule } from './pais-restaurante/pais-restaurante.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './user/roles.guard';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [ 
@@ -48,6 +51,10 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, JwtService,
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    }],
 })
 export class AppModule {}
