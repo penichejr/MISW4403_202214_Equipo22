@@ -16,13 +16,13 @@ export class CategoriaController {
     constructor(private readonly categoriaService: CategoriaService) {}
 
   @Get()
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.READALL)
   async findAll() {
     return await this.categoriaService.findAll();
   }
 
   @Get(':CategoriaId')
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.READALL)
   async findOne(@Param('CategoriaId') CategoriaId: string) {
     return await this.categoriaService.findOne(CategoriaId);
   }

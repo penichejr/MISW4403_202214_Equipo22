@@ -16,13 +16,13 @@ export class CulturaGastronomicaController {
     constructor(private readonly culturaGService: CulturaGastronomicaService) {}
 
     @Get()
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.READALL, Role.READ)
     async findAll() {
         return await this.culturaGService.findAll();
     }
 
     @Get(':culturaGId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.READALL, Role.READ)
     async findOne(@Param('culturaGId') culturaGId: string) {
         return await this.culturaGService.findOne(culturaGId);
     }
