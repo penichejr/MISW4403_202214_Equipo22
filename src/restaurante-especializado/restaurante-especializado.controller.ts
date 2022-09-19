@@ -16,26 +16,26 @@ export class RestauranteEspecializadoController {
   constructor(private readonly restauranteService: RestauranteEspecializadoService) {}
 
   @Get()
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.READALL)
   async findAll() {
     return await this.restauranteService.findAll();
   }
 
   @Get(':restauranteId')
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.READALL)
   async findOne(@Param('restauranteId') restauranteId: string) {
     return await this.restauranteService.findOne(restauranteId);
   }
 
   @Post()
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.USERW)
   async create(@Body() restauranteDto: RestauranteEspecializadoDto) {
     const restaurante: RestauranteEspecializadoEntity = plainToInstance(RestauranteEspecializadoEntity, restauranteDto);
     return await this.restauranteService.create(restaurante);
   }
 
   @Put(':restauranteId')
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.USERW)
   async update(@Param('restauranteId') restauranteId: string, @Body() restauranteDto: RestauranteEspecializadoDto) {
     const restaurante: RestauranteEspecializadoEntity = plainToInstance(RestauranteEspecializadoEntity, restauranteDto);
     return await this.restauranteService.update(restauranteId, restaurante);

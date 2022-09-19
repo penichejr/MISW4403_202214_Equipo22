@@ -16,26 +16,26 @@ export class CulturaGastronomicaController {
     constructor(private readonly culturaGService: CulturaGastronomicaService) {}
 
     @Get()
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.READALL, Role.READ)
     async findAll() {
         return await this.culturaGService.findAll();
     }
 
     @Get(':culturaGId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.READALL, Role.READ)
     async findOne(@Param('culturaGId') culturaGId: string) {
         return await this.culturaGService.findOne(culturaGId);
     }
 
     @Post()
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERW)
     async create(@Body() restauranteDto: CulturaGastronomicaDto) {
         const restaurante: CulturaGastronomicaEntity = plainToInstance(CulturaGastronomicaEntity, restauranteDto);
         return await this.culturaGService.create(restaurante);
     }
 
     @Put(':culturaGId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERW)
     async update(@Param('culturaGId') culturaGId: string, @Body() restauranteDto: CulturaGastronomicaDto) {
         const restaurante: CulturaGastronomicaEntity = plainToInstance(CulturaGastronomicaEntity, restauranteDto);
         return await this.culturaGService.update(culturaGId, restaurante);

@@ -16,25 +16,25 @@ export class PaisRestauranteController {
     constructor(private readonly paisRestauranteService: PaisRestauranteService) { }
 
     @Post(':paisId/restaurantesEspecializados/:restauranteId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERW)
     async addRestaurantePais(@Param('paisId') paisId: string, @Param('restauranteId') restauranteId: string) {
         return await this.paisRestauranteService.addRestaurantePais(paisId, restauranteId);
     }
 
     @Get(':paisId/restaurantesEspecializados/:restauranteId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.READALL)
     async findRestauranteByPaisIdRestauranteId(@Param('paisId') paisId: string, @Param('restauranteId') restauranteId: string) {
         return await this.paisRestauranteService.findRestauranteByPaisIdRestauranteId(paisId, restauranteId);
     }
 
     @Get(':paisId/restaurantesEspecializados')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.READALL)
     async findRestaurantesByPaisId(@Param('paisId') paisId: string) {
         return await this.paisRestauranteService.findRestaurantesByPaisId(paisId);
     }
 
      @Put(':paisId/restaurantesEspecializados')
-     @Roles(Role.ADMIN)
+     @Roles(Role.ADMIN, Role.USERW)
      async associateRestaurantesPais(@Body() restaurantesDto: RestauranteEspecializadoDto[], @Param('paisId') paisId: string) {
          const restaurantes = plainToInstance(RestauranteEspecializadoEntity, restaurantesDto)
          return await this.paisRestauranteService.associateRestaurantesPais(paisId, restaurantes);

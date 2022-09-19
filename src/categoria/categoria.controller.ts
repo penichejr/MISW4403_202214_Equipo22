@@ -16,26 +16,26 @@ export class CategoriaController {
     constructor(private readonly categoriaService: CategoriaService) {}
 
   @Get()
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.READALL)
   async findAll() {
     return await this.categoriaService.findAll();
   }
 
   @Get(':CategoriaId')
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.READALL)
   async findOne(@Param('CategoriaId') CategoriaId: string) {
     return await this.categoriaService.findOne(CategoriaId);
   }
 
   @Post()
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.USERW)
   async create(@Body() categoriaDto: CategoriaDto) {
     const Categoria: CategoriaEntity = plainToInstance(CategoriaEntity, categoriaDto);
     return await this.categoriaService.create(Categoria);
   }
 
   @Put(':CategoriaId')
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.USERW)
   async update(@Param('CategoriaId') CategoriaId: string, @Body() categoriaDto: CategoriaDto) {
     const Categoria: CategoriaEntity = plainToInstance(CategoriaEntity, categoriaDto);
     return await this.categoriaService.update(CategoriaId, Categoria);
