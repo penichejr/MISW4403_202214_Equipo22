@@ -42,7 +42,7 @@ export class RestauranteEspecializadoController {
   }
 
   @Delete(':restauranteId')
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.USERD)
   @HttpCode(204)
   async delete(@Param('restauranteId') restauranteId: string) {
     return await this.restauranteService.delete(restauranteId);

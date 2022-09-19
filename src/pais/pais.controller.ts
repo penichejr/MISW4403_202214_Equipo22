@@ -42,7 +42,7 @@ export class PaisController {
     }
 
     @Delete(':paisId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERD)
     @HttpCode(204)
     async delete(@Param('paisId') paisId: string) {
         return await this.paisService.delete(paisId);

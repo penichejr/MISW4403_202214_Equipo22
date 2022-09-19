@@ -42,7 +42,7 @@ export class ProductoCaracteristicoController {
   }
 
   @Delete(':ProductoCaracteristicoId')
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.USERD)
   @HttpCode(204)
   async delete(@Param('ProductoCaracteristicoId') ProductoCaracteristicoId: string) {
     return await this.productoCaracteristicoService.delete(ProductoCaracteristicoId);
