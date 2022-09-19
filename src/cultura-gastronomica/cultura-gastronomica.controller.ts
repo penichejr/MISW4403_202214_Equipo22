@@ -42,7 +42,7 @@ export class CulturaGastronomicaController {
     }
 
     @Delete(':culturaGId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERD)
     @HttpCode(204)
     async delete(@Param('culturaGId') culturaGId: string) {
         return await this.culturaGService.delete(culturaGId);

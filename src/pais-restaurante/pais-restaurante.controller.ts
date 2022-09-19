@@ -41,7 +41,7 @@ export class PaisRestauranteController {
      }
 
     @Delete(':paisId/restaurantesEspecializados/:restauranteId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERD)
     @HttpCode(204)
     async deleteRestaurantePais(@Param('paisId') paisId: string, @Param('restauranteId') restauranteId: string) {
         return await this.paisRestauranteService.deleteRestaurantePais(paisId, restauranteId);

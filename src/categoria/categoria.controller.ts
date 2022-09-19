@@ -42,7 +42,7 @@ export class CategoriaController {
   }
 
   @Delete(':CategoriaId')
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.USERD)
   @HttpCode(204)
   async delete(@Param('CategoriaId') CategoriaId: string) {
     return await this.categoriaService.delete(CategoriaId);

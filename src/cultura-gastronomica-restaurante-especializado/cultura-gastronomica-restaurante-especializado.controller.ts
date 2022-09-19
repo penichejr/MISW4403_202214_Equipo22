@@ -41,7 +41,7 @@ export class CulturaGastronomicaRestauranteEspecializadoController {
     }
 
     @Delete(':culturaGId/restaurantes/:restauranteId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERD)
     @HttpCode(204)
     async deleteRestauranteCultura(@Param('culturaGId') culturaGId: string, @Param('restauranteId') restauranteId: string){
         return await this.culturaGastronomicaRestauranteEspecializadoService.deleteRestauranteEspecializadoCulturaGastronomica(culturaGId, restauranteId);
