@@ -28,14 +28,14 @@ export class CategoriaController {
   }
 
   @Post()
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.USERW)
   async create(@Body() categoriaDto: CategoriaDto) {
     const Categoria: CategoriaEntity = plainToInstance(CategoriaEntity, categoriaDto);
     return await this.categoriaService.create(Categoria);
   }
 
   @Put(':CategoriaId')
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.USERW)
   async update(@Param('CategoriaId') CategoriaId: string, @Body() categoriaDto: CategoriaDto) {
     const Categoria: CategoriaEntity = plainToInstance(CategoriaEntity, categoriaDto);
     return await this.categoriaService.update(CategoriaId, Categoria);

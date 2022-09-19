@@ -9,6 +9,7 @@ export class UserService {
     new User(1, "admin", "admin", [Role.ADMIN]),
     new User(2, "userread", "userReadAll", [Role.READALL]),
     new User(3, "userone", "userReadOne", [Role.READ]),
+    new User(4, "userw", "admin", [Role.USERW]),
   ];
 
   async findOne(username: string): Promise<User | undefined> {

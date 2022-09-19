@@ -28,14 +28,14 @@ export class PaisController {
     }
 
     @Post()
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERW)
     async create(@Body() paisDto: PaisDto) {
         const pais: PaisEntity = plainToInstance(PaisEntity, paisDto);
         return await this.paisService.create(pais);
     }
 
     @Put(':paisId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERW)
     async update(@Param('paisId') paisId: string, @Body() paisDto: PaisDto) {
         const pais: PaisEntity = plainToInstance(PaisEntity, paisDto);
         return await this.paisService.update(paisId, pais);
