@@ -16,7 +16,7 @@ export class CulturaGastronomicaRestauranteEspecializadoController {
     constructor(private readonly culturaGastronomicaRestauranteEspecializadoService: CulturaGastronomicaRestauranteEspecializadoService){}
 
     @Post(':culturaGId/restaurantes/:restauranteId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERW)
     async addRestauranteCultura(@Param('culturaGId') culturaGId: string, @Param('restauranteId') restauranteId: string){
         return await this.culturaGastronomicaRestauranteEspecializadoService.addRestauranteEspecializadoCulturaGastronomica(culturaGId, restauranteId);
     }
@@ -34,7 +34,7 @@ export class CulturaGastronomicaRestauranteEspecializadoController {
     }
 
     @Put(':culturaGId/restaurantes')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERW)
     async associateRestauranteCulturas(@Body() restaurantesDto: RestauranteEspecializadoDto[], @Param('culturaGId') culturaGId: string){
         const restaurantes = plainToInstance(RestauranteEspecializadoEntity, restaurantesDto)
         return await this.culturaGastronomicaRestauranteEspecializadoService.associateRestauranteEspecializadosCulturaGastronomica(culturaGId, restaurantes);

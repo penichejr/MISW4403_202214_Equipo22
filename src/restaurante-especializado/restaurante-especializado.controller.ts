@@ -28,14 +28,14 @@ export class RestauranteEspecializadoController {
   }
 
   @Post()
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.USERW)
   async create(@Body() restauranteDto: RestauranteEspecializadoDto) {
     const restaurante: RestauranteEspecializadoEntity = plainToInstance(RestauranteEspecializadoEntity, restauranteDto);
     return await this.restauranteService.create(restaurante);
   }
 
   @Put(':restauranteId')
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.USERW)
   async update(@Param('restauranteId') restauranteId: string, @Body() restauranteDto: RestauranteEspecializadoDto) {
     const restaurante: RestauranteEspecializadoEntity = plainToInstance(RestauranteEspecializadoEntity, restauranteDto);
     return await this.restauranteService.update(restauranteId, restaurante);

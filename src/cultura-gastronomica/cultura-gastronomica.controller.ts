@@ -28,14 +28,14 @@ export class CulturaGastronomicaController {
     }
 
     @Post()
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERW)
     async create(@Body() restauranteDto: CulturaGastronomicaDto) {
         const restaurante: CulturaGastronomicaEntity = plainToInstance(CulturaGastronomicaEntity, restauranteDto);
         return await this.culturaGService.create(restaurante);
     }
 
     @Put(':culturaGId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERW)
     async update(@Param('culturaGId') culturaGId: string, @Body() restauranteDto: CulturaGastronomicaDto) {
         const restaurante: CulturaGastronomicaEntity = plainToInstance(CulturaGastronomicaEntity, restauranteDto);
         return await this.culturaGService.update(culturaGId, restaurante);

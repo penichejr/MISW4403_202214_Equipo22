@@ -16,7 +16,7 @@ export class CategoriaProductoCaracteristicoController {
     constructor(private readonly categoriaProductoCaracteristicoService: CategoriaProductoCaracteristicoService){}
 
     @Post(':categoriaId/productocaracteristico/:productoCaracteristicoId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERW)
     async addProductoCaracteristicoCategoria(@Param('categoriaId') categoriaId: string, @Param('productoCaracteristicoId') productoCaracteristicoId: string){
         return await this.categoriaProductoCaracteristicoService.addProductoCaracteristicoCategoria(categoriaId, productoCaracteristicoId);
     }
@@ -34,7 +34,7 @@ export class CategoriaProductoCaracteristicoController {
     }
 
     @Put(':categoriaId/productocaracteristico')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.USERW)
     async associateProductoCaracteristicosCategoria(@Body() productocaracteristicoDto: ProductoCaracteristicoDto[], @Param('categoriaId') categoriaId: string){
         const productocaracteristico = plainToInstance(ProductoCaracteristicoEntity, productocaracteristicoDto)
         return await this.categoriaProductoCaracteristicoService.associateProductoCaracteristicosCategoria(categoriaId, productocaracteristico);

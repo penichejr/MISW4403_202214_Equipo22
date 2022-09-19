@@ -28,14 +28,14 @@ export class ProductoCaracteristicoController {
   }
 
   @Post()
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.USERW)
   async create(@Body() productoCaracteristicoDto: ProductoCaracteristicoDto) {
     const ProductoCaracteristico: ProductoCaracteristicoEntity = plainToInstance(ProductoCaracteristicoEntity, productoCaracteristicoDto);
     return await this.productoCaracteristicoService.create(ProductoCaracteristico);
   }
 
   @Put(':ProductoCaracteristicoId')
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.USERW)
   async update(@Param('ProductoCaracteristicoId') ProductoCaracteristicoId: string, @Body() productoCaracteristicoDto: ProductoCaracteristicoDto) {
     const ProductoCaracteristico: ProductoCaracteristicoEntity = plainToInstance(ProductoCaracteristicoEntity, productoCaracteristicoDto);
     return await this.productoCaracteristicoService.update(ProductoCaracteristicoId, ProductoCaracteristico);
