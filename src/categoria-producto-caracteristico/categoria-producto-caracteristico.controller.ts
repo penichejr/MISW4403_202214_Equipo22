@@ -22,13 +22,13 @@ export class CategoriaProductoCaracteristicoController {
     }
 
     @Get(':categoriaId/productocaracteristico/:productoCaracteristicoId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.READALL)
     async findProductoCaracteristicoByCategoriaIdProductoCaracteristicoId(@Param('categoriaId') categoriaId: string, @Param('productoCaracteristicoId') productoCaracteristicoId: string){
         return await this.categoriaProductoCaracteristicoService.findProductoCaracteristicoByCategoriaIdProductoCaracteristicoId(categoriaId, productoCaracteristicoId);
     }
 
     @Get(':categoriaId/productocaracteristico')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.READALL)
     async findProductoCaracteristicosByCategoriaId(@Param('categoriaId') categoriaId: string){
         return await this.categoriaProductoCaracteristicoService.findProductoCaracteristicosByCategoriaId(categoriaId);
     }
