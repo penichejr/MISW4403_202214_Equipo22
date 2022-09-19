@@ -22,13 +22,13 @@ export class PaisRestauranteController {
     }
 
     @Get(':paisId/restaurantesEspecializados/:restauranteId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.READALL)
     async findRestauranteByPaisIdRestauranteId(@Param('paisId') paisId: string, @Param('restauranteId') restauranteId: string) {
         return await this.paisRestauranteService.findRestauranteByPaisIdRestauranteId(paisId, restauranteId);
     }
 
     @Get(':paisId/restaurantesEspecializados')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.READALL)
     async findRestaurantesByPaisId(@Param('paisId') paisId: string) {
         return await this.paisRestauranteService.findRestaurantesByPaisId(paisId);
     }

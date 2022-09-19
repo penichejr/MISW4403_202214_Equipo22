@@ -16,13 +16,13 @@ export class RestauranteEspecializadoController {
   constructor(private readonly restauranteService: RestauranteEspecializadoService) {}
 
   @Get()
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.READALL)
   async findAll() {
     return await this.restauranteService.findAll();
   }
 
   @Get(':restauranteId')
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.READALL)
   async findOne(@Param('restauranteId') restauranteId: string) {
     return await this.restauranteService.findOne(restauranteId);
   }

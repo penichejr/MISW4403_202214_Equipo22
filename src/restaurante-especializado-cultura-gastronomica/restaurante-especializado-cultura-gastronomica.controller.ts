@@ -22,13 +22,13 @@ export class RestauranteEspecializadoCulturaGastronomicaController {
    }
 
    @Get(':restauranteId/culturasgastronomicas/:culturaId')
-   @Roles(Role.ADMIN)
+   @Roles(Role.ADMIN, Role.READALL)
    async findCulturaByRestauranteIdCulturaId(@Param('restauranteId') restauranteId: string, @Param('culturaId') culturaId: string){
        return await this.restauranteCulturaService.findCulturaByRestauranteIdCulturaId(restauranteId, culturaId);
    }
 
    @Get(':restauranteId/culturasgastronomicas')
-   @Roles(Role.ADMIN)
+   @Roles(Role.ADMIN, Role.READALL)
    async findCulturasByRestauranteId(@Param('restauranteId') restauranteId: string){
        return await this.restauranteCulturaService.findCulturasByRestauranteId(restauranteId);
    }

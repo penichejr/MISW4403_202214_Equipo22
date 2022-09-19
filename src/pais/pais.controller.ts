@@ -16,13 +16,13 @@ export class PaisController {
     constructor(private readonly paisService: PaisService) { }
 
     @Get()
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.READALL)
     async findAll() {
         return await this.paisService.findAll();
     }
 
     @Get(':paisId')
-    @Roles(Role.ADMIN)
+    @Roles(Role.ADMIN, Role.READALL)
     async findOne(@Param('paisId') paisId: string) {
         return await this.paisService.findOne(paisId);
     }
