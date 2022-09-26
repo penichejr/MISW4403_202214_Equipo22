@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Injectable, Inject } from '@nestjs/common';
+import { Cache } from 'cache-manager';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BusinessLogicException, BusinessError } from '../shared/errors/business-errors';
 import { Repository } from 'typeorm';
@@ -6,15 +7,29 @@ import { CulturaGastronomicaEntity } from './cultura-gastronomica.entity';
 
 @Injectable()
 export class CulturaGastronomicaService {
+
+    cacheKey: string = "culturasGastronomicas";
+
     constructor(
         @InjectRepository(CulturaGastronomicaEntity)
-        private readonly culturaGastronomicaRepository: Repository<CulturaGastronomicaEntity>
+        private readonly culturaGastronomicaRepository: Repository<CulturaGastronomicaEntity>,
+
+        @Inject(CACHE_MANAGER)
+        private readonly cacheManager: Cache
     ){}
 
     async findAll(): Promise<CulturaGastronomicaEntity[]> {
-        return await this.culturaGastronomicaRepository.find({ 
-            //relations: ["paises", "recetas", "productosCaracteristicos", "restaurantesEspecializados"] 
-        });
+        const cached: CulturaGastronomicaEntity[] = await this.cacheManager.get<CulturaGastronomicaEntity[]>(this.cacheKey);
+      
+        if(!cached){
+            const culturas: CulturaGastronomicaEntity[] = await this.culturaGastronomicaRepository.find({ 
+                //relations: ["paises", "recetas", "productosCaracteristicos", "restaurantesEspecializados"] 
+            });
+            await this.cacheManager.set(this.cacheKey, culturas);
+            return culturas;
+        }
+
+        return cached;
     }
 
     async findOne(id: string): Promise<CulturaGastronomicaEntity> {
