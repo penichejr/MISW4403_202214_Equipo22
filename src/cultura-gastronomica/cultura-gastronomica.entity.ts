@@ -6,7 +6,7 @@ import { RecetaEntity } from '../receta/receta.entity';
 
 @Entity()
 export class CulturaGastronomicaEntity {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
