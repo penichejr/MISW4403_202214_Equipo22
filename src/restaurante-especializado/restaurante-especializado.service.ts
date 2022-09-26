@@ -1,19 +1,34 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
 import { Repository } from 'typeorm';
 import { RestauranteEspecializadoEntity } from './restaurante-especializado.entity';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class RestauranteEspecializadoService {
+
+  cacheKey = "restaurantes";
+
   constructor(
     @InjectRepository(RestauranteEspecializadoEntity)
     private readonly restauranteRepository: Repository<RestauranteEspecializadoEntity>,
+    
+    @Inject(CACHE_MANAGER)
+    private readonly cacheManager: Cache
   ) {}
 
   async findAll(): Promise<RestauranteEspecializadoEntity[]> {
-    return await this.restauranteRepository.find();
+    const cached: RestauranteEspecializadoEntity[] = await this.cacheManager.get<RestauranteEspecializadoEntity[]>(this.cacheKey);
+
+    if (!cached){
+      const restaurantes: RestauranteEspecializadoEntity[] = await this.restauranteRepository.find();
+      await this.cacheManager.set(this.cacheKey, restaurantes)
+      return restaurantes;
+    }
+
+    return cached;
   }
 
   async findOne(id: string): Promise<RestauranteEspecializadoEntity> {
