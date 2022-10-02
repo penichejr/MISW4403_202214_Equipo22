@@ -28,7 +28,7 @@ import { join } from 'path';
 import { ApolloDriver } from '@nestjs/apollo';
 
 @Module({
-  imports: [ 
+  imports: [
     CategoriaModule,
     RecetaModule,
     PaisModule,
@@ -42,7 +42,7 @@ import { ApolloDriver } from '@nestjs/apollo';
       username: 'postgres',
       password: 'postgres',
       database: 'culturasGastronomicas',
-      entities: [RecetaEntity, PaisEntity, ProductoCaracteristicoEntity,RestauranteEspecializadoEntity, CategoriaEntity, CulturaGastronomicaEntity],
+      entities: [RecetaEntity, PaisEntity, ProductoCaracteristicoEntity, RestauranteEspecializadoEntity, CategoriaEntity, CulturaGastronomicaEntity],
       dropSchema: true,
       synchronize: true,
       keepConnectionAlive: true,
@@ -70,4 +70,4 @@ import { ApolloDriver } from '@nestjs/apollo';
       useClass: RolesGuard,
     }],
 })
-export class AppModule {}
+export class AppModule { }
