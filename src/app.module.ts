@@ -23,9 +23,12 @@ import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './user/roles.guard';
 import { JwtService } from '@nestjs/jwt';
+import { GraphQLModule } from '@nestjs/graphql';
+import { join } from 'path';
+import { ApolloDriver } from '@nestjs/apollo';
 
 @Module({
-  imports: [ 
+  imports: [
     CategoriaModule,
     RecetaModule,
     PaisModule,
@@ -39,16 +42,26 @@ import { JwtService } from '@nestjs/jwt';
       username: 'postgres',
       password: 'postgres',
       database: 'culturasGastronomicas',
-      entities: [RecetaEntity, PaisEntity, ProductoCaracteristicoEntity,RestauranteEspecializadoEntity, CategoriaEntity, CulturaGastronomicaEntity],
+      entities: [RecetaEntity, PaisEntity, ProductoCaracteristicoEntity, RestauranteEspecializadoEntity, CategoriaEntity, CulturaGastronomicaEntity],
       dropSchema: true,
       synchronize: true,
       keepConnectionAlive: true,
+    }),
+    GraphQLModule.forRoot({
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      driver: ApolloDriver
     }),
     CategoriaProductoCaracteristicoModule,
     RestauranteEspecializadoCulturaGastronomicaModule,
     PaisRestauranteModule,
     UserModule,
     AuthModule,
+
+    GraphQLModule.forRoot({
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      driver: ApolloDriver
+    }),
+
   ],
   controllers: [AppController],
   providers: [AppService, JwtService,
@@ -57,4 +70,4 @@ import { JwtService } from '@nestjs/jwt';
       useClass: RolesGuard,
     }],
 })
-export class AppModule {}
+export class AppModule { }

@@ -3,18 +3,24 @@ import { RestauranteEspecializadoEntity } from '../restaurante-especializado/res
 import { PaisEntity } from '../pais/pais.entity';
 import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { RecetaEntity } from '../receta/receta.entity';
+import { Field, ObjectType } from '@nestjs/graphql';
 
+@ObjectType()
 @Entity()
 export class CulturaGastronomicaEntity {
+  @Field()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Field()
   @Column()
   nombre: string;
 
+  @Field()
   @Column()
   descripcion: string;
 
+  @Field(type => [RestauranteEspecializadoEntity])
   @ManyToMany(() => RestauranteEspecializadoEntity, (restaurante) => restaurante.culturasGastronomicas)
   restaurantesEspecializados: RestauranteEspecializadoEntity[];
 
