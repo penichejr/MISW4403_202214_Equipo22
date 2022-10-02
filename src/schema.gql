@@ -16,6 +16,13 @@ type ProductoCaracteristicoEntity {
   categoria: CategoriaEntity!
 }
 
+type PaisEntity {
+  id: String!
+  nombre: String!
+  culturasGastronomicas: [CulturaGastronomicaEntity!]!
+  restaurantesEspecializados: [RestauranteEspecializadoEntity!]!
+}
+
 type RestauranteEspecializadoEntity {
   id: String!
   nombre: String!
@@ -33,6 +40,8 @@ type CulturaGastronomicaEntity {
 type Query {
   categorias: [CategoriaEntity!]!
   categoria(id: String!): CategoriaEntity!
+  paises: [PaisEntity!]!
+  pais(id: String!): PaisEntity!
   productoCaracteristicos: [ProductoCaracteristicoEntity!]!
   productoCaracteristico(id: String!): ProductoCaracteristicoEntity!
   restaurantes: [RestauranteEspecializadoEntity!]!
@@ -45,6 +54,9 @@ type Mutation {
   createCategoria(categoria: CategoriaDto!): CategoriaEntity!
   updateCategoria(id: String!, categoria: CategoriaDto!): CategoriaEntity!
   deleteCategoria(id: String!): String!
+  createPais(pais: PaisDto!): PaisEntity!
+  updatePais(id: String!, pais: PaisDto!): PaisEntity!
+  deletePais(id: String!): String!
   createProductoCaracteristico(productoCaracteristico: ProductoCaracteristicoDto!): ProductoCaracteristicoEntity!
   updateProductoCaracteristico(id: String!, productoCaracteristico: ProductoCaracteristicoDto!): ProductoCaracteristicoEntity!
   deleteProductoCaracteristico(id: String!): String!
@@ -57,6 +69,10 @@ type Mutation {
 }
 
 input CategoriaDto {
+  nombre: String!
+}
+
+input PaisDto {
   nombre: String!
 }
 

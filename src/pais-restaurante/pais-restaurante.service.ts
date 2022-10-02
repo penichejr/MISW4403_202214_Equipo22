@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PaisEntity } from '../pais/pais.entity';
 import { RestauranteEspecializadoEntity } from '../restaurante-especializado/restaurante-especializado.entity';
 import { Repository } from 'typeorm';
+import { Cache } from 'cache-manager';
 import {
   BusinessError,
   BusinessLogicException,
@@ -17,6 +18,9 @@ export class PaisRestauranteService {
 
     @InjectRepository(RestauranteEspecializadoEntity)
     private readonly restauranteRepository: Repository<RestauranteEspecializadoEntity>,
+
+    @Inject(CACHE_MANAGER)
+    private readonly cacheManager: Cache
   ) { }
 
   async addRestaurantePais(
@@ -89,6 +93,31 @@ export class PaisRestauranteService {
   async findRestaurantesByPaisId(
     paisId: string,
   ): Promise<RestauranteEspecializadoEntity[]> {
+    const cacheKey: string = "restaurantesByPaisId:" + paisId;
+    const cached: RestauranteEspecializadoEntity[] = await this.cacheManager.get<RestauranteEspecializadoEntity[]>(cacheKey);
+
+    if (!cached) {
+      const pais: PaisEntity = await this.paisRepository.findOne({
+        where: { id: paisId },
+        relations: ['restaurantesEspecializados'],
+      });
+      if (!pais)
+        throw new BusinessLogicException(
+          'El país con el id dado no fue encontrado',
+          BusinessError.NOT_FOUND,
+        );
+
+      await this.cacheManager.set(cacheKey, pais.restaurantesEspecializados);
+
+      return pais.restaurantesEspecializados;
+
+    }
+
+    return cached;
+
+
+
+
     const pais: PaisEntity = await this.paisRepository.findOne({
       where: { id: paisId },
       relations: ['restaurantesEspecializados'],
