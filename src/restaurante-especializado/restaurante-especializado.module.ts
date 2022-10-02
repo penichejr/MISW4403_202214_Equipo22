@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { RestauranteEspecializadoEntity } from './restaurante-especializado.entity';
 import { RestauranteEspecializadoService } from './restaurante-especializado.service';
 import { RestauranteEspecializadoController } from './restaurante-especializado.controller';
+import { RestauranteEspecializadoResolver } from './restaurante-especializado.resolver';
 import * as sqliteStore from 'cache-manager-sqlite';
 
 @Module({
@@ -16,7 +17,7 @@ import * as sqliteStore from 'cache-manager-sqlite';
     },
   })
 ],
-  providers: [RestauranteEspecializadoService],
+  providers: [RestauranteEspecializadoService, RestauranteEspecializadoResolver],
   controllers: [RestauranteEspecializadoController],
 })
 export class RestauranteEspecializadoModule {}
