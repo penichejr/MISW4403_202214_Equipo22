@@ -47,6 +47,10 @@ import { ApolloDriver } from '@nestjs/apollo';
       synchronize: true,
       keepConnectionAlive: true,
     }),
+    GraphQLModule.forRoot({
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      driver: ApolloDriver
+    }),
     CategoriaProductoCaracteristicoModule,
     RestauranteEspecializadoCulturaGastronomicaModule,
     PaisRestauranteModule,

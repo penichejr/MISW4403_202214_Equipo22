@@ -5,6 +5,7 @@ import { CulturaGastronomicaEntity } from '../cultura-gastronomica/cultura-gastr
 import { RestauranteEspecializadoEntity } from '../restaurante-especializado/restaurante-especializado.entity';
 import { RestauranteEspecializadoCulturaGastronomicaService } from './restaurante-especializado-cultura-gastronomica.service';
 import { RestauranteEspecializadoCulturaGastronomicaController } from './restaurante-especializado-cultura-gastronomica.controller';
+import { RestauranteEspecializadoCulturaGastronomicaResolver } from './restaurante-especializado-cultura-gastronomica.resolver';
 import * as sqliteStore from 'cache-manager-sqlite';
 
 @Module({
@@ -17,7 +18,7 @@ import * as sqliteStore from 'cache-manager-sqlite';
     },
   })
 ],
-  providers: [RestauranteEspecializadoCulturaGastronomicaService],
+  providers: [RestauranteEspecializadoCulturaGastronomicaService, RestauranteEspecializadoCulturaGastronomicaResolver],
   controllers: [RestauranteEspecializadoCulturaGastronomicaController],
 })
 export class RestauranteEspecializadoCulturaGastronomicaModule {}

@@ -32,7 +32,7 @@ export class RestauranteEspecializadoService {
   }
 
   async findOne(id: string): Promise<RestauranteEspecializadoEntity> {
-    const restaurante: RestauranteEspecializadoEntity = await this.restauranteRepository.findOne({where:{id}});
+    const restaurante: RestauranteEspecializadoEntity = await this.restauranteRepository.findOne({where:{id}, relations: ["culturasGastronomicas"]});
     if (!restaurante)
       throw new BusinessLogicException('El restaurante con el id dado no fue encontrado', BusinessError.NOT_FOUND,);
 
