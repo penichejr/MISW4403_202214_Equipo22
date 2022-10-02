@@ -33,6 +33,8 @@ type CulturaGastronomicaEntity {
 type Query {
   categorias: [CategoriaEntity!]!
   categoria(id: String!): CategoriaEntity!
+  productoCaracteristicos: [ProductoCaracteristicoEntity!]!
+  productoCaracteristico(id: String!): ProductoCaracteristicoEntity!
   restaurantes: [RestauranteEspecializadoEntity!]!
   restaurante(id: String!): RestauranteEspecializadoEntity!
   culturaByRestaurante(idRestaurante: String!, idCultura: String!): CulturaGastronomicaEntity!
@@ -43,6 +45,9 @@ type Mutation {
   createCategoria(categoria: CategoriaDto!): CategoriaEntity!
   updateCategoria(id: String!, categoria: CategoriaDto!): CategoriaEntity!
   deleteCategoria(id: String!): String!
+  createProductoCaracteristico(productoCaracteristico: ProductoCaracteristicoDto!): ProductoCaracteristicoEntity!
+  updateProductoCaracteristico(id: String!, productoCaracteristico: ProductoCaracteristicoDto!): ProductoCaracteristicoEntity!
+  deleteProductoCaracteristico(id: String!): String!
   createRestaurante(restaurante: RestauranteEspecializadoDto!): RestauranteEspecializadoEntity!
   updateRestaurante(id: String!, restaurante: RestauranteEspecializadoDto!): RestauranteEspecializadoEntity!
   deleteRestaurante(id: String!): String!
@@ -53,6 +58,12 @@ type Mutation {
 
 input CategoriaDto {
   nombre: String!
+}
+
+input ProductoCaracteristicoDto {
+  nombre: String!
+  descripcion: String!
+  historia: String!
 }
 
 input RestauranteEspecializadoDto {
