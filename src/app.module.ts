@@ -56,6 +56,12 @@ import { ApolloDriver } from '@nestjs/apollo';
     PaisRestauranteModule,
     UserModule,
     AuthModule,
+
+    GraphQLModule.forRoot({
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      driver: ApolloDriver
+    }),
+
   ],
   controllers: [AppController],
   providers: [AppService, JwtService,
