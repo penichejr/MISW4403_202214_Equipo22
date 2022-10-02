@@ -23,6 +23,9 @@ import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './user/roles.guard';
 import { JwtService } from '@nestjs/jwt';
+import { GraphQLModule } from '@nestjs/graphql';
+import { join } from 'path';
+import { ApolloDriver } from '@nestjs/apollo';
 
 @Module({
   imports: [ 
@@ -49,6 +52,12 @@ import { JwtService } from '@nestjs/jwt';
     PaisRestauranteModule,
     UserModule,
     AuthModule,
+
+    GraphQLModule.forRoot({
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      driver: ApolloDriver
+    }),
+
   ],
   controllers: [AppController],
   providers: [AppService, JwtService,
