@@ -14,7 +14,7 @@ export class PaisResolver {
     }
 
     @Query(() => PaisEntity)
-    museum(@Args('id') id: string): Promise<PaisEntity> {
+    pais(@Args('id') id: string): Promise<PaisEntity> {
         return this.paisService.findOne(id);
     }
 
