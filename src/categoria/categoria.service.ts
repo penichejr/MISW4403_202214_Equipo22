@@ -1,18 +1,39 @@
-import { Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
+import { Cache } from 'cache-manager';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
 import { Repository } from 'typeorm';
 import { CategoriaEntity } from './categoria.entity';
 
+
 @Injectable()
 export class CategoriaService {
+
+    cacheKey: string = "categorias";
+
     constructor(
         @InjectRepository(CategoriaEntity)
-        private readonly categoriaRepository: Repository<CategoriaEntity>
+        private readonly categoriaRepository: Repository<CategoriaEntity>,
+        @Inject(CACHE_MANAGER) 
+        private readonly cacheManager: Cache
     ){}
 
+    /*
     async findAll(): Promise<CategoriaEntity[]> {
         return await this.categoriaRepository.find();
+    }
+    */
+
+    async findAll(): Promise<CategoriaEntity[]> {
+        const cached: CategoriaEntity[] = await this.cacheManager.get<CategoriaEntity[]>(this.cacheKey);
+        
+        if(!cached){
+            const categorias: CategoriaEntity[] = await this.categoriaRepository.find({ relations: ["productos"] });
+            await this.cacheManager.set(this.cacheKey, categorias);
+            return categorias;
+        }
+
+        return cached;
     }
 
     async findOne(id: string): Promise<CategoriaEntity> {
