@@ -9,14 +9,14 @@ import { CategoriaDto } from './categoria.dto';
 import { CategoriaEntity } from './categoria.entity';
 import { CategoriaService } from './categoria.service';
 
-//@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
 @Controller('categorias')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class CategoriaController {
     constructor(private readonly categoriaService: CategoriaService) {}
 
   @Get()
-  //@Roles(Role.ADMIN, Role.READALL)
+  @Roles(Role.ADMIN, Role.READALL)
   async findAll() {
     return await this.categoriaService.findAll();
   }

@@ -5,6 +5,8 @@ import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-co
 import { Repository } from 'typeorm';
 import { CategoriaEntity } from './categoria.entity';
 import { CategoriaService } from './categoria.service';
+import { CacheModule } from '@nestjs/common';
+
 
 describe('CategoriaService', () => {
   let service: CategoriaService;
@@ -13,7 +15,7 @@ describe('CategoriaService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [...TypeOrmTestingConfig()],
+      imports: [...TypeOrmTestingConfig(), CacheModule.register()],
       providers: [CategoriaService],
     }).compile();
 
